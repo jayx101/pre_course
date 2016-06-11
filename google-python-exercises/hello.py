@@ -15,6 +15,9 @@ That should print:
 Try changing the 'Hello' to 'Howdy' and run again.
 Once you have that working, you're ready for class -- you can edit
 and run Python code; now you just need to learn Python!
+
+
+Jacques
 """
 
 import sys
