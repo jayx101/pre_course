@@ -17,7 +17,12 @@
 # Return the resulting string.
 def verbing(s):
   # +++your code here+++
-  return
+  if len(s) > 3:
+    if s[-3:] == 'ing':
+      s += 'ly'
+    else:
+      s += 'ing'
+  return s
 
 
 # E. not_bad
@@ -34,7 +39,7 @@ def not_bad(s):
 
 
 # F. front_back
-# Consider dividing a string into two halves.
+# Consider dividing a string into two halves.'
 # If the length is even, the front and back halves are the same length.
 # If the length is odd, we'll say that the extra char goes in the front half.
 # e.g. 'abcde', the front half is 'abc', the back half 'de'.
@@ -75,6 +80,7 @@ def main():
   test(front_back('abcd', 'xy'), 'abxcdy')
   test(front_back('abcde', 'xyz'), 'abcxydez')
   test(front_back('Kitten', 'Donut'), 'KitDontenut')
+
 
 if __name__ == '__main__':
   main()
