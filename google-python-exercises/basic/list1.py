@@ -22,7 +22,12 @@
 # Note: python does not have a ++ operator, but += works.
 def match_ends(words):
   # +++your code here+++
-  return
+  b=0
+  for a in words:
+    if len(a) >= 2 and a[0] == a[-1]:
+      b += 1
+  return b
+
 
 
 # B. front_x
