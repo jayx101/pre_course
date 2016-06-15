@@ -58,10 +58,23 @@ def read_file(filename):
   return wordcount
 
 def print_words(filename):
-  print read_file(filename)
+  word_count = read_file(filename)
+  words = sorted(word_count.keys())
+  for word in words:
+    print word, word_count[word]
+
+
+def sort_words(word_tupel):
+  return word_tupel[1]
+
+
+def print_top(filename):
+  word_count = read_file(filename)
+  words = sorted(word_count.items(), key=sort_words, reverse=True)
+  for word in words[:20]:
+    print word[0], word[1]
 
 ###
-
 # This basic command line argument parsing code is provided and
 # calls the print_words() and print_top() functions which you must define.
 def main():
