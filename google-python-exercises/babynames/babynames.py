@@ -41,8 +41,36 @@ def extract_names(filename):
   ['2006', 'Aaliyah 91', Aaron 57', 'Abagail 895', ' ...]
   """
   # +++your code here+++
-  return
+  names = []
+  babyfile = open(filename, 'rU')
+  text = file.read(babyfile)
 
+  yearmatch = re.search(r'Popularity in\s(\w+)', text)
+  tuples = re.findall(r'<td>(\d*)<\/td><td>(\w+)<\/td><td>(\w+)<\/td>', text)
+
+  names.append(yearmatch.group(1))
+
+  genderranks={}
+
+  # Move boy and girl names from single row to multiple columns
+  for rank_tuple in tuples:
+    (rank, boy, girl) = rank_tuple
+    if boy not in genderranks:
+      genderranks[boy] = rank_tuple[0]
+    if girl not in genderranks:
+      genderranks[girl] = rank_tuple[0]
+    #genderranks[rank_tuple[1]] = rank_tuple[0]
+    #genderranks[rank_tuple[2]] = rank_tuple[0]
+
+  nameranks = sorted(genderranks, key=sort_by_name)
+  for gr in sorted(genderranks.keys()):
+    names.append(gr + ' ' + genderranks[gr])
+
+  print names
+  return names
+
+def sort_by_name(names):
+  return names[1]
 
 def main():
   # This command-line parsing code is provided.
@@ -63,6 +91,8 @@ def main():
   # +++your code here+++
   # For each filename, get the names, then either print the text output
   # or write it to a summary file
-  
+  for arg in args:
+    extract_names(arg)
+
 if __name__ == '__main__':
   main()
