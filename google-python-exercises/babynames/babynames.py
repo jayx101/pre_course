@@ -66,7 +66,6 @@ def extract_names(filename):
   for gr in sorted(genderranks.keys()):
     names.append(gr + ' ' + genderranks[gr])
 
-  print names
   return names
 
 def sort_by_name(names):
@@ -91,8 +90,18 @@ def main():
   # +++your code here+++
   # For each filename, get the names, then either print the text output
   # or write it to a summary file
-  for arg in args:
-    extract_names(arg)
+  for filename in args:
+    namelist = extract_names(filename)
+    text =   '\n'.join(namelist) + '\n'
+
+    if summary:
+      summaryfile = open(filename + '.summary', 'w')
+      summaryfile.write(text + '\n')
+      summaryfile.close()
+    else:
+      print text
+
+  #print text
 
 if __name__ == '__main__':
   main()
